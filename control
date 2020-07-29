@@ -1,0 +1,15 @@
+Package: com.pixelomer.dpkglogger
+Name: PkgHistory
+Version: 1.0
+Depends: mobilesubstrate, firmware (>=7.0)
+Architecture: iphoneos-arm
+Description: Application for viewing package history
+  PkgHistory is a simple application that records your package history once you install it. It records package installations, removals, upgrades and downgrades. When a tweak causes issues on your device, this information can be useful for identifying the problematic tweak.
+  .
+	Requires iOS 7.0 or later.
+	.
+	NOTE: PkgHistory will only show the history for packages that were modified *after* installing PkgHistory. It cannot show packages that were modified before installing PkgHistory.
+	WARNING: Removing PkgHistory will also delete the package history!
+Maintainer: pixelomer
+Author: pixelomer
+Section: Utilities

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Start DPKGLogger
+launchctl load /Library/LaunchDaemons/com.pixelomer.dpkglogger.plist || true
+launchctl start /Library/LaunchDaemons/com.pixelomer.dpkglogger.plist || true
+
+# If the package was installed outside of a package manager, run uicache.
+if [ -z "${CYDIA}" ]; then
+  uicache --path /Applications/PkgHistory.app
+fi

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.pixelomer.dpkglogger</string>
+	<key>Program</key>
+	<string>/usr/local/bin/dpkglogger</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/bin/dpkglogger</string>
+		<string>daemon</string>
+	</array>
+	<key>StandardErrorPath</key>
+	<string>/Library/DPKGLogger/daemon.log</string>
+	<key>UserName</key>
+	<string>root</string>
+	<key>KeepAlive</key>
+	<true/>
+</dict>
+</plist>

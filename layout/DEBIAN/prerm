@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Fail on error
+set -e
+
+# Stop DPKGLogger 
+launchctl stop /Library/LaunchDaemons/com.pixelomer.dpkglogger.plist || true
+launchctl unload /Library/LaunchDaemons/com.pixelomer.dpkglogger.plist || true
+killall -SIGKILL dpkglogger || true
+
+# If the package is being removed, remove configuration files and logs too
+if [ "$1" = "remove" ]; then
+  # Delete logs.plist
+  echo "y" | /usr/local/bin/dpkglogger reset > /dev/null
+
+  # Delete the rest of the files
+  rm -rf /Library/DPKGLogger
+fi

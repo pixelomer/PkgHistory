@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# If the package was removed outside of a package manager, run uicache.
+if [ -z "${CYDIA}" ]; then
+  uicache --path /Applications/PkgHistory.app
+fi
