@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<!-- Green gradient background -->
+		<linearGradient id="background" gradientTransform="rotate(90)">
+			<!-- Dark green color -->
+			<stop stop-color="#090" offset="0%"/>
+
+			<!-- Light green color -->
+			<stop stop-color="#171" offset="100%"/>
+		</linearGradient>
+
+		<!-- Log pattern -->
+		<radialGradient id="log" cx="50%" cy="50%" r="50%">
+			<!-- Center -->
+			<stop stop-color="red" offset="0%"/>
+			<stop stop-color="red" offset="1%"/>
+			<stop stop-color="#d5c1a8" offset="1%"/>
+
+			<!-- Inner circle #1 -->
+			<stop stop-color="#d5c1a8" offset="1%"/>
+			<stop stop-color="#d5c1a8" offset="15%"/>
+			<stop stop-color="#ae9e88" offset="19.5%"/>
+
+			<!-- Inner circle #2 -->
+			<stop stop-color="#d5c1a8" offset="26%"/>
+			<stop stop-color="#d5c1a8" offset="41%"/>
+			<stop stop-color="#ae9e88" offset="46.5%"/>
+
+			<!-- Inner circle #3 -->
+			<stop stop-color="#d5c1a8" offset="52%"/>
+			<stop stop-color="#d5c1a8" offset="64%"/>
+			<stop stop-color="#ae9e88" offset="69%"/>
+
+			<!-- End of final inner circle -->
+			<stop stop-color="#d5c1a8" offset="74%"/>
+
+			<!-- Outer circle -->
+			<stop stop-color="#d5c1a8" offset="90%"/>
+			<stop stop-color="#5f4f39" offset="90%"/>
+			<stop stop-color="#4e3e28" offset="100%"/>
+		</radialGradient>
+	</defs>
+
+	<!-- Background square -->
+	<rect x="0" y="0" width="100%" height="100%" fill="url(#background)"/>
+	
+	<!-- Log circle -->
+	<circle cx="50%" cy="50%" r="45%" fill="url(#log)"/>
+
+	<!-- Tool icon -->
+	<path
+		d="
+			M 155 327
+			L 257 225
+			A 1 1 0 0 1 328 154
+			L 292.5 189.5
+			L 322.5 219.5
+			L 358 184
+			A 1 1 0 0 1 287 255
+			L 185 357
+			L 153.751 324.751
+		"
+		stroke="#4e3e28"
+		stroke-width="5"
+		fill="#5f4f39"
+	/>
+</svg>
