@@ -10,7 +10,7 @@ killall -SIGKILL dpkglogger || true
 
 # If the package is being removed, remove configuration files and logs too
 if [ "$1" = "remove" ]; then
-  # Delete logs.plist
+  # Reset dpkglogger
   echo "y" | /usr/local/bin/dpkglogger reset > /dev/null
 
   # Delete the rest of the files

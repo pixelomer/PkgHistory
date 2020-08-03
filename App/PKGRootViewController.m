@@ -110,6 +110,22 @@ static NSDateFormatter *_dateFormatter;
 			NULL,
 			0
 		);
+		int daemonLock = open("/Library/DPKGLogger/.daemon-running", O_CREAT, O_RDONLY);
+		if ((daemonLock == -1) || (flock(daemonLock, (LOCK_EX | LOCK_NB)) == 0) || (errno != EWOULDBLOCK)) {
+			UIAlertController *alert = [UIAlertController
+				alertControllerWithTitle:@"Daemon Warning"
+				message:@"The PkgHistory daemon is not running! Without this daemon, packages will not be logged by PkgHistory. Make sure your jailbreak properly launches launch daemons in \"/Library/LaunchDaemons\" on startup. If it does, something else might be wrong, so check \"/Library/DPKGLogger/daemon.log\"."
+				preferredStyle:UIAlertControllerStyleAlert
+			];
+			[alert addAction:[UIAlertAction
+				actionWithTitle:@"OK"
+				style:UIAlertActionStyleDefault
+				handler:nil
+			]];
+			[self presentViewController:alert animated:YES completion:nil];
+		}
+		flock(daemonLock, LOCK_UN);
+		close(daemonLock);
 	}
 }
 

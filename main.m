@@ -3,16 +3,6 @@
 #import <sys/stat.h>
 #import "shared.m"
 
-static void PXApplication_DidChangePreferencesCallback(
-	CFNotificationCenterRef center,
-	void *observer,
-	CFNotificationName name,
-	const void *object,
-	CFDictionaryRef userInfo
-) {
-	// This notification is not implemented!
-}
-
 @interface PXApplication : NSObject
 @end
 
@@ -48,14 +38,18 @@ static void PXApplication_DidChangePreferencesCallback(
 
 	// Perform the expected actions depending on the arguments
 	if ([args[1] isEqualToString:@"daemon"]) {
-		CFNotificationCenterAddObserver(
-			CFNotificationCenterGetDarwinNotifyCenter(),
-			NULL,
-			PXApplication_DidChangePreferencesCallback,
-			CFSTR("com.pixelomer.dpkglogger/DidChangePreferences"),
-			NULL,
-			0
-		);
+		{
+			int daemonRunning = open(".daemon-running", O_CREAT, O_RDONLY);
+			if (daemonRunning == -1) {
+				NSLog(@"Failed to open the daemon lock: %s", strerror(errno));
+				return EXIT_FAILURE;
+			}
+			fchmod(daemonRunning, 0444);
+			if (flock(daemonRunning, LOCK_EX) == -1) {
+				NSLog(@"Failed to lock the daemon lock: %s", strerror(errno));
+				return EXIT_FAILURE;
+			}
+		}
 		NSDate *lastModificationDate = [NSDate distantPast];
 		while (1) { @autoreleasepool {
 			NSString *errorMessage = nil;
