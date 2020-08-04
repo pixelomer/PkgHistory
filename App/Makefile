@@ -6,10 +6,15 @@ PkgHistory_FILES = $(wildcard *.m)
 PkgHistory_FRAMEWORKS = UIKit
 PkgHistory_CFLAGS = -fobjc-arc
 
+#
 # If you aren't on macOS or if you are in a future where qlmanage doesn't work/exist,
 # you can replace it with something else as long as it converts icon.svg to PNG and
 # writes it to ${template}
-
+#
+# ImageMagick is required since the "convert" command is used. ImageMagick isn't used
+# for converting icon.svg to PNG since it can't do it properly (or I can't use it
+# properly :P)
+#
 internal-stage:: icon.svg
 	@	path="$(THEOS_STAGING_DIR)/Applications/$(APPLICATION_NAME).app"; \
 		template="$${path}/icon.svg.png"; \
